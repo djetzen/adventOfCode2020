@@ -3,21 +3,19 @@ package de.itemis.advent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Day1Calculator {
-    private boolean isSum2020(List<Integer> numbers) {
-        return numbers.stream().mapToInt(Integer::intValue).sum() == 2020;
-    }
-
     private Set<Integer> linesFromFileWithTwoDigitsSummingUpTo2020(String filename) throws IOException {
         Set<Integer> result = new HashSet<>();
         List<Integer> readNumbers = readNumbersFromFile(filename);
         for (int i : readNumbers) {
             for (int j : readNumbers) {
-                if (i != j && isSum2020(List.of(i, j))) {
+                if (areUniqueNumbers(i, j) && isSum2020(i, j)) {
                     result.add(i);
                     result.add(j);
                 }
@@ -32,7 +30,7 @@ public class Day1Calculator {
         for (int i : readNumbers) {
             for (int j : readNumbers) {
                 for (int k : readNumbers) {
-                    if (i != j && j != k && i != k && isSum2020(List.of(i, j, k))) {
+                    if (areUniqueNumbers(i, j, k) && isSum2020(i, j, k)) {
                         result.add(i);
                         result.add(j);
                         result.add(k);
@@ -42,6 +40,14 @@ public class Day1Calculator {
             }
         }
         return result;
+    }
+
+    private boolean areUniqueNumbers(Integer... numbers) {
+        return Arrays.stream(numbers).collect(Collectors.toSet()).size() == numbers.length;
+    }
+
+    private boolean isSum2020(Integer... numbers) {
+        return Arrays.stream(numbers).mapToInt(Integer::intValue).sum() == 2020;
     }
 
     private List<Integer> readNumbersFromFile(String filename) throws IOException {
