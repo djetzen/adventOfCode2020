@@ -13,7 +13,6 @@ public class PassportCalculator {
         return getPassportsFromFile(filename).stream().filter(Passport::isSimpleValid).collect(Collectors.toSet()).size();
     }
 
-
     public int getNumberOfExtendedValidPassports(String filename) throws IOException {
         return getPassportsFromFile(filename).stream().filter(Passport::isExtendedValid).collect(Collectors.toSet()).size();
     }
