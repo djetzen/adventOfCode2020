@@ -1,4 +1,4 @@
-package de.itemis.advent;
+package de.itemis.advent.day1;
 
 import org.junit.jupiter.api.Test;
 

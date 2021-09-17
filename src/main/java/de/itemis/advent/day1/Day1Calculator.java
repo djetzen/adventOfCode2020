@@ -1,4 +1,4 @@
-package de.itemis.advent;
+package de.itemis.advent.day1;
 
 import java.io.IOException;
 import java.nio.file.Files;
