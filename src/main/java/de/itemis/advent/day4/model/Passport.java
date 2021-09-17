@@ -1,16 +1,21 @@
 package de.itemis.advent.day4.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.List;
 
-public record Passport(
-        String byr,
-        String iyr,
-        String eyr,
-        String hgt,
-        String hcl,
-        String ecl,
-        String pid,
-        String cid) {
+@Data
+@AllArgsConstructor
+public class Passport {
+    String byr;
+    String iyr;
+    String eyr;
+    String hgt;
+    String hcl;
+    String ecl;
+    String pid;
+    String cid;
 
     public boolean isExtendedValid() {
         return allElementsAreSet() && passesHaveValidEntries();
